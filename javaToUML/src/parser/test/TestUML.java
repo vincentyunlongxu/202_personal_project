@@ -1,6 +1,7 @@
-package com.parse;
+package parser.test;
 
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -8,17 +9,30 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
-public class TestyUML {
-	public static void main(String args[]) {
-		TestyUML tuml = new TestyUML();
-		tuml.connect();
+import net.sourceforge.plantuml.GeneratedImage;
+import net.sourceforge.plantuml.SourceFileReader;
+
+public class TestUML {
+	public static void main(String args[]) throws IOException {
+		String path = "/Users/cheyikung/programming/git/202/personal_project/javaToUML/output/umlSampleOutput.java";
+		File file = new File(path);
+        
+		TestUML tuml = new TestUML(file);
+		
 		System.out.println("success");
 	}
-	public TestyUML() {
-
+	public TestUML(File s) throws IOException {
+		File source = s;
+		SourceFileReader reader = new SourceFileReader(source);
+		List<GeneratedImage> list = reader.getGeneratedImages();
+		// Generated files
+		File png = list.get(0).getPngFile();
 	}
 
+	
+	/* yUML
 	public void connect() {
 
 		String path = "/Users/cheyikung/programming/git/202/personal_project/javaToUML/output/test.pdf";
@@ -37,5 +51,5 @@ public class TestyUML {
 			// openConnection() failed
 			// ...
 		}
-	}
+	}*/
 }

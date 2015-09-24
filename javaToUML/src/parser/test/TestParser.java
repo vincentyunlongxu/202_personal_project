@@ -1,4 +1,4 @@
-package com.parse;
+package parser.test;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,7 +12,7 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
-public class Test {
+public class TestParser {
 	public static void main(String[] args) throws Exception {
         // creates an input stream for the file to be parsed
 		String path = "/Users/cheyikung/programming/git/202/personal_project/javaToUML/javapath/TestJava.java";
@@ -49,12 +49,12 @@ public class Test {
 
     	
         @Override
-        public void visit(MethodDeclaration n, Object arg) {
+        public void visit(ClassOrInterfaceDeclaration n, Object arg) {
             // here you can access the attributes of the method.
             // this method will be called for all methods in this 
             // CompilationUnit, including inner class methods
         	//System.out.println(n.getModifiers() + n.getType() + " " + n.getName());
-            System.out.println(n.getType());
+            System.out.println(n.getName());
             
         }
     }
